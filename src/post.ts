@@ -7,8 +7,9 @@ import log from './lib/log'
 
 async function post(): Promise<void> {
   try {
-    const { cacheDir, targetPath, cachePath } = getVars()
-
+    const result = getVars()
+    const { cacheDir, targetPath, cachePath } = result
+    log.info(`getVars ${JSON.stringify(result)}`)
     await mkdirP(cacheDir)
     await mv(targetPath, cachePath, { force: true })
   } catch (error: unknown) {
