@@ -2516,7 +2516,9 @@ const isErrorLike_1 = __nccwpck_require__(196);
 const log_1 = __importDefault(__nccwpck_require__(853));
 async function post() {
     try {
-        const { cacheDir, targetPath, cachePath } = (0, getVars_1.getVars)();
+        const result = (0, getVars_1.getVars)();
+        const { cacheDir, targetPath, cachePath } = result;
+        log_1.default.info(`getVars ${JSON.stringify(result)}`);
         await (0, io_1.mkdirP)(cacheDir);
         await (0, io_1.mv)(targetPath, cachePath, { force: true });
     }
